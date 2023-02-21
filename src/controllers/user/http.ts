@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
 
 import UserCtrl from './index'
+import userService from './service'
 import * as validator from './validator'
 interface IHttp {
   [key: string]: any
@@ -16,23 +17,17 @@ interface IReq extends Response {
 
 const httpUser: IHttp = {}
 
-httpUser.get = async (req: IReq, res: IRes) => {
-  const users = await UserCtrl.model.find().lean()
-
-  res.response = { users, message: req.polyglot.t('emailRequiredField') }
-}
-
 httpUser.register = async (req: IReq, res: IRes) => {
   await validator.post(req.yup, req.body)
 
   const body = req.body
-  const checkUser = await UserCtrl.model.findOne({"username": body.username}).lean()
+  const checkUser = await userService.GetUser(body)
 
   if(checkUser){
     return res.response = { message: "User has registered" }
   }
 
-  const user = await UserCtrl.model.create(body)
+  const user = await userService.Create(body)
 
   return res.data = user
 }
@@ -41,7 +36,7 @@ httpUser.login = async (req: IReq, res: IRes) => {
 
   const body = req.body
 
-  const user = await UserCtrl.model.findOne({"username": body.username}).lean()
+  const user = await userService.GetUser(body)
 
   res.response = user
 }

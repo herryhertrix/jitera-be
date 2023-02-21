@@ -22,8 +22,7 @@ const httpItem: IHttp = {}
 httpItem.createitem = async (req: IReq, res: IRes) => {
   await validator.deposit(req.yup, req.body)
 
-  const body = req.body
-  const Item = await ItemCtrl.model.create(body)
+  const Item = await itemService.Create(req.body)
 
   res.data = Item
 }

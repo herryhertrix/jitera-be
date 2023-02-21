@@ -1,4 +1,3 @@
-import { BalanceStatus } from '@schemas/Balance'
 import {
   ArraySchemaConstructor,
   BooleanSchemaConstructor,
@@ -27,10 +26,3 @@ export const deposit = (yup: IYup, params: object) =>
     name: yup.string().required(),
     timewindow: yup.date().required(),
   }).validateSync(params, { abortEarly: false })
-
-
-// export const credit = (yup: IYup, params: object) =>
-//   yup.object().shape({
-//     username: yup.string().required(),
-//     password: yup.string().required(),
-//   }).validateSync(params, { abortEarly: false })

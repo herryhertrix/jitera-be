@@ -1,9 +1,7 @@
 import BidCtrl from '../bid/index'
-import ItemCtrl from '../item/index'
 import BalanceCtrl from '../balance/index'
-import Balance, { BalanceStatus } from '@schemas/Balance'
-import Bid, { BidStatus } from '@schemas/Bid'
-import mongoose from 'mongoose'
+import { BalanceStatus } from '../../schemas/Balance'
+import { BidStatus } from '../../schemas/Bid'
 class BalanceService {
     public async Generate(userId: string) {
         const balances = await BalanceCtrl.model.find({ "userId": userId })
@@ -22,7 +20,7 @@ class BalanceService {
     }
     public async Debit(body: any){
         body["status"] = BalanceStatus.DEBIT
-        await BalanceCtrl.model.create(body)
+        return await BalanceCtrl.model.create(body)
     }
     public async Credit(body: any) {
         body["status"] = BalanceStatus.CREDIT
@@ -97,6 +95,14 @@ class BalanceService {
         const isBidding = getBidding.length > 0 ? getBidding[0].reserved : 0
         const total = balance - isBidding
         return total
+    }
+
+    public async CheckDebit(body: any){
+        return await BalanceCtrl.model.findOne({userId: body.userId})
+    }
+
+    public async DeleteDebit(body: any){
+        return await BalanceCtrl.model.deleteOne({userId: body.userId})
     }
 }
 const balanceService = new BalanceService();

@@ -1,6 +1,6 @@
 import { Document, Model } from 'mongoose'
 
-import UserMdl from '@schemas/User'
+import UserMdl from '../../schemas/User'
 
 class User {
   public model: Model<Document>

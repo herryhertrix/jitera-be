@@ -1,6 +1,6 @@
 import { Document, Model } from 'mongoose'
 
-import BidMdl from '@schemas/Bid'
+import BidMdl from '../../schemas/Bid'
 
 class Bid {
   public model: Model<Document>

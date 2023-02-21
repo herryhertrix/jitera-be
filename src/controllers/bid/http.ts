@@ -2,9 +2,7 @@ import { Request, Response } from 'express'
 
 import BidCtrl from './index'
 import ItemCtrl from '../item/index'
-import BalanceCtrl from '../balance/index'
 import * as validator from './validator'
-import { BalanceStatus } from '@schemas/Balance'
 import balanceService from '@ctrls/balance/service'
 import bidService from './service'
 interface IHttp {
@@ -42,7 +40,7 @@ httpBid.bidding = async (req: IReq, res: IRes) => {
     return res.response = { message: "Bid price is below start price" }
   }
 
-  const biddings = await BidCtrl.model.find({ "itemId": body.itemId }).lean().sort({ price: -1 })
+  const biddings = await bidService.FindBid(body)
 
   const balance = await balanceService.Generate(body.userId)
   if (balance <= body.price) {

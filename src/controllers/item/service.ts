@@ -1,8 +1,6 @@
 import BidCtrl from '../bid/index'
 import ItemCtrl from './index'
-import BalanceCtrl from '../balance/index'
-import { BalanceStatus } from '@schemas/Balance'
-import { BidStatus } from '@schemas/Bid'
+import { BidStatus } from '../../schemas/Bid'
 class ItemService {
   public async GetAllItem() {
     const items = await ItemCtrl.model.aggregate([
@@ -117,6 +115,15 @@ class ItemService {
       }
     ])
     return { myItem ,myBid }
+  }
+  public async Create(body: any){
+    return await ItemCtrl.model.create(body)
+  }
+  public async GetItemByUserId(userId: any){
+    return await ItemCtrl.model.findOne({userId: userId})
+  }
+  public async DeleteItem(userId: any){
+    return await ItemCtrl.model.deleteOne({userId: userId})
   }
 }
 const itemService = new ItemService();

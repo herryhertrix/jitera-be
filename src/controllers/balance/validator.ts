@@ -1,4 +1,3 @@
-import { BalanceStatus } from '@schemas/Balance'
 import {
   ArraySchemaConstructor,
   BooleanSchemaConstructor,

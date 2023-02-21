@@ -1,6 +1,6 @@
 import { Document, Model } from 'mongoose'
 
-import BalanceMdl from '@schemas/Balance'
+import BalanceMdl from '../../schemas/Balance'
 
 class Balance {
   public model: Model<Document>

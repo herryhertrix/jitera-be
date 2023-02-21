@@ -22,7 +22,13 @@ yarn install
 localhost:3030
 ```
 
-<p>4. start project</p>
+<p>4. start test</p>
+
+```
+yarn test
+```
+
+<p>5. start project</p>
 
 ```
 yarn start
@@ -37,3 +43,4 @@ Technologies used in the project:
 *   Node-express
 *   Typescript
 *   Mongo
+*   Jest

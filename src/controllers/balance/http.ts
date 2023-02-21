@@ -1,7 +1,6 @@
-import { BalanceStatus } from '@schemas/Balance'
+
 import { Request, Response } from 'express'
 
-import BalanceCtrl from './index'
 import balanceService from './service'
 import * as validator from './validator'
 interface IHttp {
